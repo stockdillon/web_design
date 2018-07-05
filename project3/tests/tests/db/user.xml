@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dataset>
+    <!-- password: 87654321 -->
+    <test8_user id="2" email="stockdil@msu.edu" name="Dillon"
+                password="343101ddd785981a75731d52e0530378db688a78a9d76589eff4932cb86eaa59"
+                salt="MyNRkFI+#A0OSi#b" />
+    <!-- password: super477 -->
+/>
+</dataset>

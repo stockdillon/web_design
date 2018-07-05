@@ -1,0 +1,79 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10640\viewh12360\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+page.php:\
+\
+<!doctype html>\
+<html lang="en">\
+<head>\
+<meta charset="utf-8">\
+<title>Untitled Document</title>\
+<script>\
+window.onload = clicker;\
+</script>\
+</head>\
+<body>\
+\
+<div class="clicker-buttons">\
+<p><button id="b1">Press Me</button></p>\
+<p><button id="b2">&nbsp;</button></p>\
+<p><button id="b3">&nbsp;</button></p>\
+</div>\
+\
+</body>\
+</html>\
+\
+\
+\
+\
+\
+\
+\
+page.css:\
+\
+.clicker-buttons p \{\
+	text-align: center;\
+	margin: 0.25em;\
+\}\
+\
+.clicker-buttons button \{\
+	width: 8em;\
+	text-align:center;\
+\}\
+\
+\
+\
+\
+\
+hangman.js:\
+\
+function clicker() \{\
+    console.log("clicker executed");\
+    var b1 = document.getElementById("b1");\
+	var b2 = document.getElementById("b2");\
+	var b3 = document.getElementById("b3");\
+	b1.onclick = function() \{\
+	   if(b1.innerHTML === "Press Me") \{\
+			b1.innerHTML = "&nbsp;";\
+			b2.innerHTML = "No, Me";\
+		\}\
+	\}\
+\
+	b2.onclick = function() \{\
+	   if(b2.innerHTML === "No, Me") \{\
+			b2.innerHTML = "&nbsp;";\
+			b3.innerHTML = "No, Me";\
+		\}\
+	\}\
+\
+	b3.onclick = function() \{\
+	   if(b3.innerHTML === "No, Me") \{\
+			b3.innerHTML = "&nbsp;";\
+			b1.innerHTML = "Press Me";\
+		\}\
+	\}\
+\}}

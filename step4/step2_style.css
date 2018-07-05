@@ -1,0 +1,155 @@
+html, body, header, footer, hgroup, nav, article, section, figure,
+figcaption, h1, h2, h3, ul, li, body, div, p, img {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+}
+
+body {
+    color: white;
+    text-align: center;
+    background-image: url("cave-background.jpg");
+    background-color: black;
+    background-position: center top;
+    background-repeat: no-repeat;
+    font-family: "Times New Roman", serif;
+    width: 810px;
+    margin: auto;
+}
+
+body div.links h1{
+    text-align: center;
+}
+
+body h1{
+    font-size: 3em;
+    padding-bottom: .25em;
+}
+
+
+body div.main_box{
+    text-align: center;
+    margin: auto;
+    color: black;
+    background-color: white;
+    height: 90%;
+    width: 80%;
+    margin-bottom: 3em;
+}
+
+body div.main_box p{
+    font-size: 1.5em;
+}
+
+body div.main_box div.box div.pic_box{
+    width: 97%;
+    height: 95%;
+    padding: .75em;
+    text-align: center;
+}
+
+body div.main_box div.box p img{
+    margin: 0;
+    width: 650px;
+    height: 325px;
+}
+
+body div.main_box div.box p{
+    font-size: 1.5em;
+    padding: 0em;
+    margin-bottom: 0em;
+}
+
+
+body div.main_box div.rooms{
+    margin: .25em;
+    padding: 0;
+    width: 650px;
+    max-height: 70%;
+    text-align: center;
+}
+
+body div.main_box div.rooms div.room{
+    display: inline-block;
+    padding: 0.0em;
+    margin: 0;
+    width: 200px;
+    text-align: center;
+    font-size: .7em;
+}
+
+body div.main_box div.rooms div.room p a{
+    font-size: .90em;
+}
+
+
+div.links{
+    padding-right: 0em;
+}
+
+
+div.links nav{
+    font-family: "Times New Roman", serif;
+    font-size: 1em;
+    color: white;
+    text-align: right;
+}
+
+nav a:link{
+    color: white;
+}
+
+nav a:visited{
+    color: gray;
+}
+
+body div.main_box img {
+    padding: .5em;
+    border: thin solid black;
+    max-width: 95%;
+    height: auto;
+}
+
+body div.main_box div.rooms div.room p img{
+    padding: 0;
+    border: none;
+    margin: 0;
+    margin-bottom: 0;
+}
+
+body div.main_box p a{
+    font-size: 1.25em;
+}
+
+body div.main_box p{
+    padding: 0em;
+}
+
+body div.main_box div.instructions_box p{
+    font-size: 1em;
+    font-family: "Times New Roman", serif;
+    text-align: left;
+    margin-right: .75em;
+    margin-left: .75em;
+    margin-bottom: 1em;
+}
+
+body div.main_box div.instructions_box a{
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+body div.main_box div.box div.custom div.classy_font{
+    font-size: 2em;
+    font-style: italic;
+    padding: 0;
+    margin-top: 0;
+}
+
+body div.main_box div.box div.custom p{
+    font-size: 1.5em;
+    margin-bottom: 0;
+    line-height: 1em;
+}

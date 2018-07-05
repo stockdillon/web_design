@@ -1,0 +1,68 @@
+html, body, header, footer, hgroup, nav, article, section, figure,
+figcaption, h1, h2, h3, ul, li, body, div, p, img {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    border: 0;
+}
+
+
+body{
+    max-width: 400px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 1.25em;
+    height: 225px;
+    text-align: center;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+}
+
+heading{
+    text-align: left;
+}
+h1{
+    background-color: red;
+    font-size: 1.75em;
+    text-align: left;
+    font-family: Arial;
+    padding-left: .4em;
+}
+
+div.main_box p{
+    padding-bottom: 0em;
+}
+
+form p{
+    padding-bottom: 1em;
+}
+
+div.form_box{
+    width: 100%;
+    text-align: center;
+}
+
+
+input[name="value"]{
+    text-align: center;
+    width: 9em;
+    height: auto;
+    padding-bottom: 1em;
+}
+
+input[name="clear"]{
+    text-align: center;
+    width: 9em;
+    height: auto;
+    padding-bottom: .5em;
+}
+
+p[class="message"]{
+    font-size: 1.25em;
+    margin-left: .5em;
+    text-align: left;
+    margin-top: 1em;
+    margin-bottom: 0em;
+}

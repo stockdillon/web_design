@@ -1,0 +1,213 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 PAGE.PHP \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+<!doctype html>\
+<html>\
+<head>\
+    <meta charset="utf-8">\
+    <title>Language Search</title>\
+    <link rel="stylesheet" href="countries/countries.css">\
+    <script src="jquery.min.js"></script>\
+    <script>\
+    $(document).ready(function() \{\
+        new Languages("#language_search");\
+    \});\
+    </script> \
+</head>\
+<body>\
+\
+<form id="language_search">\
+    <fieldset>\
+        <p><label for="language">Language</label><br>\
+            <input type="text" name="language" id="language"></p>\
+        <p><label for="official">Official</label><br>\
+            <input type="radio" name="official" value="yes">Yes</input><br>\
+            <input type="radio" name="official" value="no">No</input><br>\
+            <input type="radio" name="official" value="neither" checked>Don't Care</input></p>\
+        <p><input type="submit" value="Search"></p>\
+    </fieldset>\
+    <div class="result"></div>\
+</form>\
+\
+</body>\
+</html>\
+\
+\
+\
+\
+PAGE.JS \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+function Languages(sel) \{\
+    var form = $(sel);\
+    \
+    form.submit(function(event) \{\
+        event.preventDefault();\
+        //$(sel + " .result").html("<p>Searching</p>");\
+        $.ajax(\{\
+            url: "post.php",\
+            data: form.serialize(),\
+            method: "GET",\
+            success: function(data) \{\
+                $(sel + " .result").html(data);\
+                $(sel + " .result").hide().fadeIn(500);\
+            \},\
+            error: function(xhr, status, error) \{\
+                $(sel + " .result").html("<p>Error: " + error + "</p>");\
+            \}\
+        \});\
+    \});\
+\
+\}\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+POST.PHP \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+<?php\
+\
+$pdo;\
+try \{\
+  $pdo = new PDO('mysql:host=mysql-user.cse.msu.edu;dbname=cse477s', \
+                'cse477sro',\
+                'Letmesql');\
+\} catch(PDOException $e) \{\
+  // If we can't connect we die!\
+  die("Unable to select database");\
+\}\
+\
+var_dump($_GET);\
+$language = $_GET['language'];\
+$_GET['official'] == 'yes' ? $official = "T" : $official = "F";\
+\
+$sql = <<<SQL\
+select Language, Percentage, IsOfficial, Name\
+from CountryLanguage join Country\
+on CountryCode = Code\
+where Language LIKE ?\
+SQL;\
+\
+        //$pdo = $this->pdo();\
+        $statement = $pdo->prepare($sql);\
+\
+        $statement->execute(array($language));\
+        $results = $statement->fetchAll(\\PDO::FETCH_ASSOC);\
+        \
+\
+//echo "count of results: ";\
+$count = count($results);\
+//echo $count;\
+$string = '';\
+for($i=0; $i<$count; $i++)\{\
+        $country = $results[$i]['Name'];\
+        $percentage = $results[$i]['Percentage'];\
+        $official = $results[$i]['IsOfficial'];\
+        $string .= "<tr><td>$country</td><td>$percentage</td><td>$official</td></tr>";\
+\}\
+\
+//var_dump($string);\
+//var_dump($results);\
+\
+echo <<<HTML\
+<table>\
+<tr><th>Country</th><th>Percentage</th><th>Official</th></tr>\
+$string\
+</table>\
+HTML;\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+POST.PHP w/ YES/NO functionality\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+<?php\
+\
+$pdo;\
+try \{\
+  $pdo = new PDO('mysql:host=mysql-user.cse.msu.edu;dbname=cse477s', \
+                'cse477sro',\
+                'Letmesql');\
+\} catch(PDOException $e) \{\
+  // If we can't connect we die!\
+  die("Unable to select database");\
+\}\
+\
+//var_dump($_GET);\
+$language = $_GET['language'];\
+$official = $_GET['official'];\
+if($official != 'neither')\{\
+    $official == 'yes' ? $official = 'T' : $official = 'F';\
+\}\
+\
+\
+\
+//echo "official? : ";\
+//echo $official;\
+\
+\
+\
+$sql = <<<SQL\
+select Language, Percentage, IsOfficial, Name\
+from CountryLanguage join Country\
+on CountryCode = Code\
+where Language LIKE ?\
+SQL;\
+        //$pdo = $this->pdo();\
+        $statement = $pdo->prepare($sql);\
+\
+        $statement->execute(array($language));\
+        $results = $statement->fetchAll(\\PDO::FETCH_ASSOC);\
+        \
+$count = count($results);\
+//echo "count of results: ";\
+//echo $count;\
+$string = '';\
+for($i=0; $i<$count; $i++)\{\
+        $country = $results[$i]['Name'];\
+        $percentage = $results[$i]['Percentage'];\
+        if($percentage < .001)\{continue;\}\
+        $isOfficial = $results[$i]['IsOfficial'];\
+        //$string .= "<tr><td>$country</td><td>$percentage</td><td>$isOfficial</td></tr>";\
+        if($official == 'T' and $isOfficial == 'T')\{\
+            $string .= "<tr><td>$country</td><td>$percentage</td><td>Yes</td></tr>";\
+        \}\
+        if($official == 'F' and $isOfficial == 'F')\{\
+            $string .= "<tr><td>$country</td><td>$percentage</td><td>No</td></tr>";        \
+        \}\
+        \
+        if($official == 'neither')\{\
+            $isOfficial == 'T' ? $isOfficial = 'Yes' : $isOfficial = 'No';\
+            $string .= "<tr><td>$country</td><td>$percentage</td><td>$isOfficial</td></tr>";        \
+        \}\
+\}\
+\
+//var_dump($string);\
+//var_dump($results);\
+\
+echo <<<HTML\
+<table>\
+<tr><th>Country</th><th>Percentage</th><th>Official</th></tr>\
+$string\
+</table>\
+HTML;\
+\
+\
+\
+\
+}

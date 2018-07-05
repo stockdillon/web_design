@@ -1,0 +1,61 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <?php\
+\
+/**\
+ * Maintains a collection of points\
+ */\
+class PointCollection \{\
+	/**\
+	 * Add a new point to the collection\
+	 * @param $x X value\
+	 * @param $y Y value\
+	 */\
+	public function add($x, $y) \{\
+		$this->points[] = array('x'=>$x, 'y'=>$y);\
+	\}\
+\
+	/**\
+	 * Sort the point collection by distance from the origin.\
+	 * @param $distance A function with arguments $x, $y.\
+	 * Returns the distance of the point $x, $y from the origin.\
+	 */\
+	public function sort($distance) \{\
+    $compare = function($a, $b) use ($distance)\{\
+    $da = $distance($a['x'], $a['y']);\
+    $db = $distance($b['x'], $b['y']);\
+    if($da < $db)\{\
+        return -1;\
+    \}\
+    if($da > $db)\{\
+        return 1;\
+    \}\
+    return 0;\
+    \};\
+    usort($this->points , $compare);\
+	\}\
+\
+\
+	/**\
+	 * Sort the point collection by Euclidian distance from\
+	 * the origin.\
+	 */\
+    public function sortEuclidian() \{\
+        $this->sort(function($x, $y) \{\
+            return sqrt(($x*$x) +($y*$y));\
+        \});\
+    \}\
+\
+	/**\
+	 * @return array Collection of points\
+	 */\
+	public function getPoints() \{\
+		return $this->points;\
+	\}\
+\
+	private $points = array();	///< The point collection\
+\}}
